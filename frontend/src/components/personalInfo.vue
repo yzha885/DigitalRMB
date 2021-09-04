@@ -33,17 +33,11 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">创建信息</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+<!--        <el-button @click='nextStep()' >下一步</el-button>-->
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
 
-      <el-form-item>
-        <router-link
-            to="/informationCont"
-            tag="el-button">
-         下一步
-        </router-link>
-      </el-form-item>
 
 
     </el-form>
@@ -52,6 +46,7 @@
 
 <script>
 export default {
+  name: 'AddForm',
   data() {
     return {
       ruleForm: {
@@ -87,20 +82,38 @@ export default {
       }
     };
   },
-  methods: {
+  methods:{
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          //jump into next page if meet all the validation
           alert('submit!');
+          this.$router.push({path:'/informationCont',query:{name:this.ruleForm.name,cardType:this.ruleForm.idCardType,
+            cardNumber:this.ruleForm.idCardNumber,uni:this.ruleForm.university,faulty:this.ruleForm.faculty,major:this.ruleForm.major}})
+          //pass values into next page
+
+          // this.$emit('add-form',this.ruleForm);
         } else {
           console.log('error submit!!');
           return false;
         }
       });
     },
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       alert('submit!');
+    //       this.$emit('add-form',this.ruleForm);
+    //     } else {
+    //       console.log('error submit!!');
+    //       return false;
+    //     }
+    //   });
+    // },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+
   }
 }
 </script>

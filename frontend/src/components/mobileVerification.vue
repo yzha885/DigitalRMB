@@ -18,7 +18,7 @@
       </el-form-item>
 
       <el-form-item label="手机号码" prop="mobileNumber">
-          <el-input v-model="ruleForm.mobileNumber" placeholder="">
+          <el-input v-model.number="ruleForm.mobileNumber" placeholder="">
               <el-button slot="append"  >获取验证码</el-button>
           </el-input>
       </el-form-item>
@@ -43,10 +43,8 @@
 
 
 export default {
-  name: 'form',
-  props: {
-    msg: String
-  },
+  name: 'el-form-component',
+
   data() {
     return {
       ruleForm: {
@@ -60,7 +58,7 @@ export default {
         ],
         mobileNumber: [
           { required: true, message: '请输入手机号', trigger: 'change' },
-          { min: 11, max: 11, message: '请输入正确长度的手机号码', trigger: 'blur' },
+          // { min: 10, max: 12, message: '请输入正确长度的手机号码', trigger: 'blur' },
           { type: 'number', message: '手机号码必须为数字值'}
 
         ],
