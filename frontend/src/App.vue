@@ -1,12 +1,14 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">开户首页</router-link> |
-      <router-link to="/Information">表格1</router-link> ｜
-      <router-link to="/InformationCont">表格2</router-link>
-    </div>
-    <router-view/>
-  </div>
+<!--  <div id="app">-->
+    <el-container id="app">
+      <el-header></el-header>
+      <el-main>
+        <router-view/>
+      </el-main>
+      <el-footer></el-footer>
+    </el-container>
+
+<!--  </div>-->
 </template>
 
 <style>
@@ -21,13 +23,18 @@
 #nav {
   padding: 30px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.el-header, .el-footer {
+  background-color: #B3C0D1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+.el-main {
+  background-color: #E9EEF3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+
 </style>

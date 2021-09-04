@@ -1,10 +1,10 @@
 <template>
   <div class="information">
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
       <!--      运营机构-->
-      <el-form-item label="运营机构">
-        <el-select v-model="form.region" placeholder="请选择数字人民币运营机构">
+      <el-form-item label="运营机构" >
+        <el-select v-model="ruleForm.rmbOperatingAngency" placeholder="请选择数字人民币运营机构" prop="rmbOperatingAngency">
           <el-option label="中国工商银行" value="1"></el-option>
           <el-option label="中国农业银行" value="2"></el-option>
           <el-option label="中国银行" value="3"></el-option>
@@ -17,22 +17,22 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item>
-        <div style="margin-top: 15px;">
-          <el-input v-model="input2" placeholder="请输入手机号">
-            <template slot="append">获取验证码</template>
+      <el-form-item label="手机号码" prop="mobileNumber">
+          <el-input v-model="ruleForm.mobileNumber" placeholder="">
+              <el-button slot="append"  >获取验证码</el-button>
           </el-input>
-        </div>
+      </el-form-item>
+
+      <el-form-item label="验证码" prop="verificationCode">
+        <el-input v-model="ruleForm.verificationCode" placeholder="">
+
+        </el-input>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+        <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
-
-
-
-
     </el-form>
   </div>
 
@@ -49,23 +49,45 @@ export default {
   },
   data() {
     return {
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+      ruleForm: {
+        rmbOperatingAngency: '',
+        mobileNumber: '',
+        verificationCode: '',
+      },
+      rules: {
+        rmbOperatingAngency: [
+          { required: true, message: '请输入姓名', trigger: 'blur' },
+        ],
+        mobileNumber: [
+          { required: true, message: '请输入手机号', trigger: 'change' },
+          { min: 11, max: 11, message: '请输入正确长度的手机号码', trigger: 'blur' },
+          { type: 'number', message: '手机号码必须为数字值'}
+
+        ],
+        verificationCode: [
+          { required: true, message: '请输入证件号码', trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
-    onSubmit() {
-      console.log('submit!');
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     }
-  }
+
+
+    }
+
 }
 </script>
 
