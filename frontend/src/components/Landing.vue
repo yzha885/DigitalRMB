@@ -2,7 +2,7 @@
   <div id="home">
     <el-image
         fit="fill"
-        style="width: 100vw; height: 100vh; z-index: -1; position: absolute"
+        style="width: 100vw; height: 100vh; z-index: -1; position: absolute; text-align: start; display: block"
         :src="require('../assets/background.jpg')"></el-image>
     <div>
       <div class="flex_between" style="padding: 20vw 30vw 0 30vw">
@@ -12,7 +12,7 @@
               style="width: 15vw; height: 15vw;"
               fit="contain"></el-image>
         </div>
-        <span style="font-weight: 900; font-size: 20px">E-CNY</span>
+        <span style="font-weight: 900; font-size: 20px">数字人民币</span>
       </div>
       <div class="flex_center" style="margin-top: 60vh">
         <el-button round @click="openAccount" type="danger" >开户</el-button>

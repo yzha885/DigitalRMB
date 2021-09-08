@@ -3,13 +3,14 @@
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
     <el-tabs v-model="activeName" @tab-click="handleClick" stretch>
       <el-tab-pane label="个人信息" name="first">
+        <div style="padding: 5vw; text-align: start">
         <!--      客户姓名-->
         <el-form-item label="姓名" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+          <el-input v-model="ruleForm.name" style="width: 60vw"></el-input>
         </el-form-item>
         <!--      证件类型 drop down list-->
         <el-form-item label="证件类型" prop="IDcard_type">
-          <el-select v-model="ruleForm.IDcard_type" clearable @change="fnEdit" placeholder="请选择证件类型">
+          <el-select v-model="ruleForm.IDcard_type" clearable @change="fnEdit" placeholder="请选择证件类型" style="width: 60vw">
             <el-option label="居民身份证" value="1"></el-option>
             <el-option label="往来港澳通行证" value="2"></el-option>
             <el-option label="往来台湾通行证" value="3"></el-option>
@@ -19,26 +20,28 @@
 
         <!--      证件号码-->
         <el-form-item label="证件号码" prop="IDcard_number">
-          <el-input v-model="ruleForm.IDcard_number" :maxlength="idLength" show-word-limit></el-input>
+          <el-input v-model="ruleForm.IDcard_number" :maxlength="idLength" show-word-limit style="width: 60vw"></el-input>
         </el-form-item>
         <!--     所在学校-->
         <el-form-item label="所在学校" prop="university">
-          <el-input v-model="ruleForm.university"></el-input>
+          <el-input v-model="ruleForm.university" style="width: 60vw"></el-input>
         </el-form-item>
         <!--      院系-->
         <el-form-item label="院系" prop="faculty">
-          <el-input v-model="ruleForm.faculty"></el-input>
+          <el-input v-model="ruleForm.faculty" style="width: 60vw"></el-input>
         </el-form-item>
         <!--      专业信息-->
         <el-form-item label="所学专业" prop="major">
-          <el-input v-model="ruleForm.major"></el-input>
+          <el-input v-model="ruleForm.major" style="width: 60vw"></el-input>
         </el-form-item>
+        </div>
       </el-tab-pane>
 
 
       <el-tab-pane label="手机验证" name="second">
+        <div style="padding: 5vw">
         <el-form-item label="运营机构" prop="RMB_opreating_agency">
-          <el-select v-model="ruleForm.RMB_opreating_agency" placeholder="请选择数字人民币运营机构" prop="RMB_opreating_agency">
+          <el-select style="width: 60vw" v-model="ruleForm.RMB_opreating_agency" placeholder="请选择数字人民币运营机构" prop="RMB_opreating_agency">
             <el-option label="中国工商银行" value="1"></el-option>
             <el-option label="中国农业银行" value="2"></el-option>
             <el-option label="中国银行" value="3"></el-option>
@@ -48,18 +51,22 @@
           </el-select>
         </el-form-item>
         <el-form-item label="手机号码" prop="mobile_number">
-          <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit >
+          <el-input style="width: 60vw" v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit >
             <el-button slot="append" @click="getCode()" :disabled="tag" >获取验证码</el-button>
           </el-input>
         </el-form-item>
         <el-form-item label="验证码" prop="verificationCode" >
-          <el-input v-model="ruleForm.verificationCode" placeholder="">
+          <el-input style="width: 60vw" v-model="ruleForm.verificationCode" placeholder="">
           </el-input>
         </el-form-item>
 
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        </el-form-item>
+          <el-form-item>
+
+            <div class="flex_center">
+              <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+            </div>
+          </el-form-item>
+        </div>
 
       </el-tab-pane>
     </el-tabs>
@@ -68,6 +75,14 @@
 
 </template>
 <style>
+.flex_center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.el-form-item__content{
+  margin: 0px!important;
+}
 .el-message{
   min-width:90vw;
 }
@@ -170,10 +185,25 @@ export default {
     getCode(){
 
       if(!this.ruleForm.mobile_number){
-          this.$alert('请输入手机号码', '错误', {
-            confirmButtonText: '确定',
-          });
-      }else{
+          // this.$alert('请输入手机号码', '错误', {
+          //   confirmButtonText: '确定',
+          // });
+
+        this.$message({
+          message: '请输入手机号码',
+          type: 'error',
+          showClose: true
+        })
+      }else if(this.ruleForm.mobile_number.length!==11){
+        this.$message({
+          message: '请输入正确长度手机号码',
+          type: 'error',
+          showClose: true
+        })
+
+
+      }
+      else{
         axios.post('/api/judge_sms', {mobile_number:this.ruleForm.mobile_number}
         )
             .then((response) => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" style="margin-top: 10vh">
     <p>信息提交成功</p>
     <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
       <div>

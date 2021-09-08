@@ -1,25 +1,25 @@
 <template>
-  <div class="binding">
+  <div class="binding" style="padding: 5vw; margin-top: 5vw">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
       <el-form-item label="持卡人" prop="card_holder">
-        <el-input v-model="ruleForm.card_holder" placeholder="">
+        <el-input style="width: 60vw" v-model="ruleForm.card_holder" placeholder="">
         </el-input>
       </el-form-item>
 
       <el-form-item label="银行卡号" prop="bank_card_number">
-        <el-input v-model="ruleForm.bank_card_number" maxlength="19" show-word-limit placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        <el-input style="width: 60vw" v-model="ruleForm.bank_card_number" maxlength="19" show-word-limit placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </el-input>
       </el-form-item>
 
       <el-form-item label="预留手机号" prop="mobile_number">
-        <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit>
+        <el-input style="width: 60vw" v-model="ruleForm.mobile_number" maxlength="11" show-word-limit oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
           <el-button type="primary" plain slot="append" @click="getCode()" :disabled="tag">获取验证码</el-button>
         </el-input>
       </el-form-item>
 
       <el-form-item label="验证码" prop="verify_code">
-        <el-input v-model="ruleForm.verify_code" placeholder="">
+        <el-input style="width: 60vw" v-model="ruleForm.verify_code" placeholder="">
         </el-input>
       </el-form-item>
 
@@ -118,6 +118,7 @@ export default {
       }
     },
     submitForm(formName) {
+      let that = this
       console.log(this.ruleForm)
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -135,6 +136,8 @@ export default {
                     message: '您的银行卡已绑定成功',
                     type: 'success'
                   });
+                  setTimeout(() => {
+                    that.$router.push('/')}, 3500)
 
                 }
                 else{
@@ -163,6 +166,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.el-message{
+  width: 90vw!important;
+  height: 2vw!important;
+}
+i{
+  font-size: 20px;
+}
 
 </style>
