@@ -5,7 +5,7 @@
         style="width: 100vw; height: 100vh; z-index: -1; position: absolute; text-align: start; display: block"
         :src="require('../assets/background.jpg')"></el-image>
     <div>
-      <div class="flex_between" style="padding: 20vw 30vw 0 30vw">
+      <div class="flex_between" style="padding: 35vw 30vw 0 30vw">
         <div>
           <el-image
               :src="require('../assets/rmb.png')"
