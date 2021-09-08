@@ -194,15 +194,16 @@ export default {
           type: 'error',
           showClose: true
         })
-      }else if(this.ruleForm.mobile_number.length!==11){
-        this.$message({
-          message: '请输入正确长度手机号码',
-          type: 'error',
-          showClose: true
-        })
-
-
       }
+      // else if(this.ruleForm.mobile_number.length!==11){
+      //   this.$message({
+      //     message: '请输入正确长度手机号码',
+      //     type: 'error',
+      //     showClose: true
+      //   })
+      //
+      //
+      // }
       else{
         axios.post('/api/judge_sms', {mobile_number:this.ruleForm.mobile_number}
         )
@@ -219,7 +220,7 @@ export default {
                 let timer = setTimeout(function(){
                   that.tag=false
                   clearTimeout(timer)
-                },60000)
+                },30000)
 
               }else{
                 this.$message({

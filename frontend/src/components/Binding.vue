@@ -90,7 +90,12 @@ export default {
               console.log(response.data)
               if(response.data.code==1){
 
-                alert('验证码已发送至您手机，请查看')
+                // alert('验证码已发送至您手机，请查看')
+                this.$message({
+                  message: '验证码已发送至您手机，请查看',
+                  type: 'success',
+                  showClose: true
+                })
                 //验证码被被禁用60秒
                 let that =this
                 this.tag=true
@@ -114,6 +119,12 @@ export default {
             .catch(function (error) {
               console.log(error)
               alert("短信发送失败，请稍后重试")
+              // this.$message({
+              //   message: '短信发送失败，请稍后重试',
+              //   type: 'warning',
+              //   showClose: true
+              // })
+
             });
       }
     },
