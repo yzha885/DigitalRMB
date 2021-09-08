@@ -8,7 +8,7 @@
       </el-form-item>
 
       <el-form-item label="银行卡号" prop="bank_card_number">
-        <el-input v-model.number="ruleForm.bank_card_number" maxlength="19" show-word-limit placeholder="">
+        <el-input v-model="ruleForm.bank_card_number" maxlength="19" show-word-limit placeholder="" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
         </el-input>
       </el-form-item>
 
@@ -60,6 +60,7 @@ export default {
         bank_card_number: [
           {required: true, message: '请输入银行卡号', trigger: 'change'},
           {min: 19, max: 19, message: '银行卡号错误', trigger: 'blur'}
+
         ],
         mobile_number: [
           {required: true, message: '请输入手机号', trigger: 'change'},
