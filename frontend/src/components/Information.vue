@@ -92,15 +92,15 @@ export default {
       idLength:'18',
       activeName: 'first',
       ruleForm: {
-        RMB_opreating_agency: '1',
-        mobile_number:'12345678910',
-        verificationCode: '111111',
+        RMB_opreating_agency: '',
+        mobile_number:'',
+        verificationCode: '',
         name: '',
-        IDcard_type: '1',
+        IDcard_type: '',
         IDcard_number: '',
-        university: '大学',
-        faculty: '工程',
-        major: '京津冀'
+        university: '',
+        faculty: '',
+        major: ''
       },
       rules: {
         RMB_opreating_agency: [

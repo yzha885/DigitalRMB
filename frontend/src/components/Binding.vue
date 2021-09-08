@@ -49,8 +49,8 @@ export default {
       ruleForm: {
         card_holder: '',
         bank_card_number:'',
-        mobile_number: '12345678910',
-        verify_code: '123456',
+        mobile_number: '',
+        verify_code: '',
       },
       rules: {
         card_holder: [
@@ -64,7 +64,7 @@ export default {
         mobile_number: [
           {required: true, message: '请输入手机号', trigger: 'change'},
           {min: 11,  message: '手机号码错误', trigger: 'blur'},
-          { type: 'number', message: '手机号码须为数字值'},
+          // { type: 'number', message: '手机号码须为数字值'},
         ],
         verify_code: [
           {required: true, message: '请输入验证码', trigger: 'blur'},
