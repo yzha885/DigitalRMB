@@ -49,7 +49,7 @@
         </el-form-item>
         <el-form-item label="手机号码" prop="mobile_number">
           <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit>
-            <el-button slot="append" @click="getCode()" >获取验证码</el-button>
+            <el-button slot="append" @click="getCode()" :disabled="tag" >获取验证码</el-button>
           </el-input>
         </el-form-item>
         <el-form-item label="验证码" prop="verificationCode" >
@@ -87,6 +87,7 @@ export default {
   },
   data() {
     return {
+      tag:false,
 
       idLength:'18',
       activeName: 'first',
@@ -181,6 +182,13 @@ export default {
                   type: 'success',
                   showClose: true
                 })
+                //获取验证码被被禁用60秒
+                let that =this
+                this.tag=true
+                let timer = setTimeout(function(){
+                  that.tag=false
+                  clearTimeout(timer)
+                },60000)
 
               }else{
                 this.$message({

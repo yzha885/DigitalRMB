@@ -14,7 +14,7 @@
 
       <el-form-item label="预留手机号" prop="mobile_number">
         <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit>
-          <el-button slot="append" @click="getCode()">获取验证码</el-button>
+          <el-button type="primary" plain slot="append" @click="getCode()" :disabled="tag">获取验证码</el-button>
         </el-input>
       </el-form-item>
 
@@ -44,6 +44,7 @@ export default {
   },
   data() {
     return {
+      tag:false,
 
       ruleForm: {
         card_holder: '',
@@ -75,6 +76,7 @@ export default {
     //发送手机验证码
     getCode(){
 
+
       if(!this.ruleForm.mobile_number){
         this.$alert('请输入手机号码', '错误', {
           confirmButtonText: '确定',
@@ -85,12 +87,17 @@ export default {
             .then((response) => {
               console.log(response.data)
               if(response.data.code==1){
-                // this.$message({
-                //   message: '验证码已发送至您手机，请查看',
-                //   type: 'success',
-                //   showClose: true
-                // })
+
                 alert('验证码已发送至您手机，请查看')
+                //验证码被被禁用60秒
+                let that =this
+                this.tag=true
+                let timer = setTimeout(function(){
+                  that.tag=false
+                  clearTimeout(timer)
+                },60000)
+
+
 
               }else{
                 this.$message({
