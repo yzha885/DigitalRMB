@@ -1,29 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Landing from '../views/Landing'
-import InformationCont from '../views/informationCont'
+import Landing from '../components/Landing.vue'
+import Information from '../components/Information.vue'
+import Result from '../components/Result.vue'
+import Binding from '../components/Binding.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Landing',
+    name: 'landing',
     component: Landing
   },
   {
-    path: '/informationCont',
-    name: 'InformationCont',
-    component: InformationCont
-  },
-
-  {
     path: '/information',
-    name: 'Information',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Information.vue')
+    name: 'information',
+    component: Information
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: Result
+  },
+  {
+    path: '/binding',
+    name: 'binding',
+    component: Binding
   }
 ]
 

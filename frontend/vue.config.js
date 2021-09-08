@@ -1,12 +1,15 @@
-// module.exports={
-//     dbServer:{
-//         proxy:{
-//             '^/api':{
-//                 target:'http://localhost:5000',
-//                 changeOrigin:true,
-//                 logLevel:'debug',
-//                 pathRewrite:{'^/api':'/'}
-//             }
-//         }
-//     }
-// }
+
+module.exports={
+    devServer:{
+        proxy: {
+            '/api': {
+                target: 'https://172.20.10.2:12345/',
+
+                changeOrigin: true,
+                ws: true,
+                logLevel: 'debug',
+                pathRewrite: {'^/': '/'}
+            }
+        }
+    }
+}
