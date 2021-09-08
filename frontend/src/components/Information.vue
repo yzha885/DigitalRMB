@@ -48,7 +48,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="手机号码" prop="mobile_number">
-          <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit>
+          <el-input v-model.number="ruleForm.mobile_number" maxlength="11" show-word-limit >
             <el-button slot="append" @click="getCode()" :disabled="tag" >获取验证码</el-button>
           </el-input>
         </el-form-item>
@@ -108,12 +108,13 @@ export default {
         ],
         mobile_number: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
-          { min: 11, max: 11, message: '手机号码必须为数字值',trigger: 'blur'}
-
+          // { min:11, message: '请输入正确长度手机号码',trigger: 'blur'},
+          { type: 'number', message: '手机号码须为数字值'},
         ],
         verificationCode: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
-          { min: 6, max: 6, message: '证件信息长度错误', trigger: 'blur' }
+          { min: 6, max: 6, message: '证件信息长度错误', trigger: 'blur' },
+
         ],
         name: [
           { required: true, message: '请输入姓名', trigger: 'blur' },
